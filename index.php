@@ -42,7 +42,7 @@
 
         <div class="col-12">
             <h1>Payment Integration with Flutterwave</h1>
-            <form id="paymentForm" class="row g-3">
+            <form class="row g-3">
                 <div class="col-auto">
                     <label for="flutterwave-email">Email Address</label>
                     <input class="form-control form-control-sm" type="email" id="flutterwave-email" required aria-label="flutterwave-email">
