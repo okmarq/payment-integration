@@ -92,7 +92,7 @@
                     method: 'get',
                     success: function(response) {
                         console.log(response);
-                        // the details needed will be extracted from here and used
+                        // the details needed will be extracted from response and used
                     }
                 });
             }
@@ -111,6 +111,7 @@
             currency: "NGN",
             country: "NG",
             payment_options: " ",
+            // redirect_url: "http://payment-integration.test", // leave this out to kep the page from reloading
             customer: {
                 email: document.getElementById("flutterwave-email").value,
                 name: document.getElementById("flutterwave-first-name").value + " " + document.getElementById("flutterwave-last-name").value,
@@ -122,7 +123,7 @@
                     method: 'get',
                     success: function(response) {
                         console.log(response);
-                        // the details needed will be extracted from here and used
+                        // the details needed will be extracted from response and used
                     }
                 });
             },
