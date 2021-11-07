@@ -72,68 +72,68 @@
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
-    const paymentForm = document.getElementById('paymentForm');
-    paymentForm.addEventListener("submit", payWithPaystack, false);
+const paymentForm = document.getElementById('paymentForm');
+paymentForm.addEventListener("submit", payWithPaystack, false);
 
-    function payWithPaystack(e) {
-        e.preventDefault();
-        let handler = PaystackPop.setup({
-            key: 'pk_test_aca08e6603a71b047c5e154f5c51c7557fdc9e55',
-            email: document.getElementById("paystack-email").value,
-            firstname: document.getElementById("paystack-first-name").value,
-            lastname: document.getElementById("paystack-last-name").value,
-            amount: document.getElementById("paystack-amount").value * 100,
-            onClose: function() {
-                alert('Window closed.');
-            },
-            callback: function(response) {
-                $.ajax({
-                    url: '/paystack/verify_transaction.php?reference=' + response.reference,
-                    method: 'get',
-                    success: function(response) {
-                        console.log(response);
-                        // the details needed will be extracted from response and used
-                    }
-                });
-            }
-        });
-        handler.openIframe();
-    }
+function payWithPaystack(e) {
+    e.preventDefault();
+    let handler = PaystackPop.setup({
+        key: 'pk_test_aca08e6603a71b047c5e154f5c51c7557fdc9e55',
+        email: document.getElementById("paystack-email").value,
+        firstname: document.getElementById("paystack-first-name").value,
+        lastname: document.getElementById("paystack-last-name").value,
+        amount: document.getElementById("paystack-amount").value * 100,
+        onClose: function() {
+            alert('Window closed.');
+        },
+        callback: function(response) {
+            $.ajax({
+                url: '/paystack/verify_transaction.php?reference=' + response.reference,
+                method: 'get',
+                success: function(response) {
+                    console.log(response);
+                    // the details needed will be extracted from response and used
+                }
+            });
+        }
+    });
+    handler.openIframe();
+}
 </script>
 
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 <script>
-    function makePayment() {
-        FlutterwaveCheckout({
-            public_key: "FLWPUBK_TEST-4e93c5d90d4ed60f9349275ff9f64680-X",
-            tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1),
-            amount: document.getElementById("flutterwave-amount").value,
-            currency: "NGN",
-            country: "NG",
-            payment_options: " ",
-            // redirect_url: "http://payment-integration.test", // leave this out to kep the page from reloading
-            customer: {
-                email: document.getElementById("flutterwave-email").value,
-                name: document.getElementById("flutterwave-first-name").value + " " + document.getElementById("flutterwave-last-name").value,
-                phone_number: '08118682051',
-            },
-            callback: function(data) {
-                $.ajax({
-                    url: '/flutterwave/verify_transaction.php?transaction_id=' + data.transaction_id,
-                    method: 'get',
-                    success: function(response) {
-                        console.log(response);
-                        // the details needed will be extracted from response and used
-                    }
-                });
-            },
-            customizations: {
-                title: "My store",
-                description: "Payment for items in cart",
-                logo: "https://assets.piedpiper.com/logo.png",
-            },
-        });
-    }
+function makePayment() {
+    FlutterwaveCheckout({
+        public_key: "FLWPUBK_TEST-4e93c5d90d4ed60f9349275ff9f64680-X",
+        tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+        amount: document.getElementById("flutterwave-amount").value,
+        currency: "NGN",
+        country: "NG",
+        payment_options: " ",
+        // redirect_url: "http://payment-integration.test", // leave this out to kep the page from reloading
+        customer: {
+            email: document.getElementById("flutterwave-email").value,
+            name: document.getElementById("flutterwave-first-name").value + " " + document.getElementById("flutterwave-last-name").value,
+            phone_number: '08118682051',
+        },
+        callback: function(data) {
+            $.ajax({
+                url: '/flutterwave/verify_transaction.php?transaction_id=' + data.transaction_id,
+                method: 'get',
+                success: function(response) {
+                    console.log(response);
+                    // the details needed will be extracted from response and used
+                }
+            });
+        },
+        customizations: {
+            title: "My store",
+            description: "Payment for items in cart",
+            logo: "https://assets.piedpiper.com/logo.png",
+        },
+    });
+}
 </script>
 </body>
 
