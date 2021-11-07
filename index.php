@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
-<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 <title>Payment Integration</title>
 </head>
@@ -67,8 +67,8 @@
     </div>
 </div>
 
-<script src="/js/jquery-3.6.0.min.js"></script>
-<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
@@ -106,12 +106,12 @@ function payWithPaystack(e) {
 function makePayment() {
     FlutterwaveCheckout({
         public_key: "FLWPUBK_TEST-4e93c5d90d4ed60f9349275ff9f64680-X",
-        tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+        tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1), // use a better random number generator here
         amount: document.getElementById("flutterwave-amount").value,
         currency: "NGN",
         country: "NG",
         payment_options: " ",
-        // redirect_url: "http://payment-integration.test", // leave this out to kep the page from reloading
+        // redirect_url: "http://payment-integration.test", // leave this out to kep the page from reloading after successful  transaction verification
         customer: {
             email: document.getElementById("flutterwave-email").value,
             name: document.getElementById("flutterwave-first-name").value + " " + document.getElementById("flutterwave-last-name").value,
