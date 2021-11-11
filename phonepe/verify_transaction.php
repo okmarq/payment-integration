@@ -2,11 +2,10 @@
 
 include '../env_util.php';
 
-if (isset($_POST['data'])) {
-    $stringify_payload = json_encode($_POST['data']);
-    $encoded_payload = base64_encode($stringify_payload);
-    $salted = $encoded_payload . '/v4/debit' . getenv('PHONEPE_KEY_INDEX');
-    $hashed = hash("sha256", $salted) . '###1';
+$reference = $_GET['reference'];
+
+if ($reference == '') {
+    header('Location: javascript://history.go(-1)');
 }
 
 $curl = curl_init();
@@ -24,7 +23,7 @@ curl_setopt_array($curl, [
         "Accept: application/json",
         "Content-Type: application/json",
         "X-CALLBACK-URL: https://payment-integration.test/phonepe/callback",
-        "X-VERIFY: " . $hashed
+        "X-VERIFY: SHA256(base64 encoded payload + '/v4/debit' + salt key) + ### + salt index"
     ],
 ]);
 
