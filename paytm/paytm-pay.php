@@ -1,3 +1,9 @@
+<?php
+	header("Pragma: no-cache");
+	header("Cache-Control: no-cache");
+	header("Expires: 0");
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -16,7 +22,7 @@
 <div class="container">
     <h1>Payment Integration with PayTM</h1>
     
-    <form method="post" action="pgRedirect.php" class="row g-3">
+    <form method="post" action="complete_transaction.php" class="row g-3">
         <div class="col-6">
             <label for="paytm-orderid">Order ID</label>
             <input class="form-control form-control-sm" type="text" id="paytm-orderid" name="ORDER_ID" value="<?php echo "ORDS" . rand(10000,99999999)?>" readonly>

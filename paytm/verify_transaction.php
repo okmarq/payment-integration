@@ -43,32 +43,34 @@ if (isset($_POST["ORDER_ID"]) && $_POST["ORDER_ID"] != "") {
 </head>
 
 <body>
-	<h2>Transaction status query</h2>
-	<form method="post" action="">
-		<div class="col-6">
-            <label for="paytm-orderid">Order ID</label>
-            <input class="form-control form-control-sm" type="text" id="paytm-orderid" name="ORDER_ID" value="<?php echo $ORDER_ID ?>">
-        </div>
-		<div class="col-6">
-            <button class="btn btn-primary mb-3" type="submit">Verify Transaction</button>
-        </div>
+	<div class="container">
+		<h2>Transaction status query</h2>
+		<form method="post" action="" class="row g-3">
+			<div class="col-12">
+				<label for="paytm-orderid">Order ID</label>
+				<input class="form-control form-control-sm" type="text" id="paytm-orderid" name="ORDER_ID" value="<?php echo $ORDER_ID ?>">
+			</div>
+			<div class="col-12">
+				<button class="btn btn-primary mb-3" type="submit">Verify Transaction</button>
+			</div>
 
-		<br></br>		
-	</form>
+			<br></br>		
+		</form>
 
-	<?php if (isset($responseParamList) && count($responseParamList) > 0) { ?>
-		<h2>Response of status query:</h2>
-		<table class="table table-sm table-striped table-hover">
-			<tbody>
-				<?php foreach ($responseParamList as $paramName => $paramValue) { ?>
-				<tr>
-					<th scope="row"><?php echo $paramName ?></th>
-					<td><?php echo $paramValue ?></td>
-				</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-	<?php } ?>
+		<?php if (isset($responseParamList) && count($responseParamList) > 0) { ?>
+			<h2>Response of status query:</h2>
+			<table class="table table-sm table-striped table-hover">
+				<tbody>
+					<?php foreach ($responseParamList as $paramName => $paramValue) { ?>
+					<tr>
+						<th scope="row"><?php echo $paramName ?></th>
+						<td><?php echo $paramValue ?></td>
+					</tr>
+					<?php } ?>
+				</tbody>
+			</table>
+		<?php } ?>
+	</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
